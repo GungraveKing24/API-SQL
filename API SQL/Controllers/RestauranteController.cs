@@ -17,7 +17,7 @@ namespace API_SQL.Controllers
 
 
         /// <summary>
-        /// Seleccionar todos buscando por ID
+        /// Seleccionar todos buscando por ID de cliente 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -27,12 +27,14 @@ namespace API_SQL.Controllers
 
         public IActionResult Get(int id)
         {
-            var ListaAll = (from c in _RestauranteContext.Clientes
-                            join p in _RestauranteContext.Pedidos
-                            on c.clienteId equals p.clienteId
-                            where c.clienteId == id
+            var ListaAll = (from client in _RestauranteContext.Clientes
+                            join pedido in _RestauranteContext.Pedidos
+                            on client.clienteId equals pedido.clienteId
+                            where client.clienteId == id
                             select new
-                            { c, p
+                            {
+                                client,
+                                pedido
                             }).FirstOrDefault();
 
             if (ListaAll == null)
