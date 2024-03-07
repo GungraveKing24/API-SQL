@@ -25,7 +25,12 @@ catch (Exception ex)
     );
 }
 
-
+//Solo la mia
+builder.Services.AddDbContext<RestauranteContext>(options =>
+options.UseSqlServer(
+    builder.Configuration.GetConnectionString("EquiposFrank")
+    )
+);
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
