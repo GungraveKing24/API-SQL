@@ -7,5 +7,6 @@ namespace API_SQL.Controllers
     [ApiController]
     public class EquiposController : ControllerBase
     {
+
     }
 }
