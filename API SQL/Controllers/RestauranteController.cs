@@ -44,6 +44,19 @@ namespace API_SQL.Controllers
             return Ok(ListaAll);
         }
 
-        
+        public IActionResult GetAllUnaTabla(int id)
+        {
+            List<clientes> ListaAll = (from client in _RestauranteContext.Clientes
+                            where client.clienteId == id
+                            select client).ToList();
+
+            if (ListaAll == null)
+            {
+                return NotFound();
+            }
+            return Ok(ListaAll);
+        }
+
+
     }
 }
