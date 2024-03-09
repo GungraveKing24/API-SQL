@@ -24,7 +24,6 @@ namespace API_SQL.Controllers
 
         [HttpGet]
         [Route("GetAll/{id}")]
-
         public IActionResult Get(int id)
         {
             var ListaAll = (from client in _RestauranteContext.Clientes
@@ -44,6 +43,9 @@ namespace API_SQL.Controllers
             return Ok(ListaAll);
         }
 
+
+        [HttpGet]
+        [Route("GetAllUnaTabla")]
         public IActionResult GetAllUnaTabla(int id)
         {
             List<clientes> ListaAll = (from client in _RestauranteContext.Clientes
@@ -57,6 +59,19 @@ namespace API_SQL.Controllers
             return Ok(ListaAll);
         }
 
+        [HttpGet]
+        [Route("GetAllCliente")]
+        public IActionResult GetCli()
+        {
+            List<clientes> listadoClientes = (from e in _RestauranteContext.Clientes
+                                              select e).ToList();
+            if (listadoClientes.Count == 0)
+            {
+                return NotFound();
+            }
+
+            return Ok(listadoClientes);
+        }
 
     }
 }
